@@ -28,6 +28,31 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
     //Please add you methods below for the database
-
+    public boolean searchForUser(String username){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = new String[] {COLUMN_ID,COLUMN_USER_USERNAME} ;
+        String selection = COLUMN_USER_USERNAME + " = ? " ;
+        String[] selectionArgs = new String[] {username} ;
+        Cursor cursor = db.query(USER_TABLE,columns,selection, selectionArgs,null, null,null);
+        if(cursor.moveToFirst()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public boolean addUser(String username , String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_USER_USERNAME, username);
+        cv.put(COLUMN_USER_PASSWORD, password);
+        long test_addition = db.insert(USER_TABLE, null, cv);
+        if(test_addition == -1){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 
 }

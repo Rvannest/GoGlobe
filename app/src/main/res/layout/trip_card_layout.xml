@@ -3,50 +3,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="130dp">
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="8dp"
         app:cardElevation="2dp"
-        app:cardUseCompatPadding="true">
+        app:cardUseCompatPadding="false">
         <LinearLayout
             android:id="@+id/lin_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/design_default_color_secondary_variant"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             <TextView
                 android:id="@+id/trip_name_view"
-                android:layout_width="63dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minWidth="210dp"
-                android:padding="20dp"
+                android:padding="2dp"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
             <TextView
                 android:id="@+id/trip_location_view"
-                android:layout_width="63dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minWidth="210dp"
-                android:padding="20dp"
+                android:padding="2dp"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
             <TextView
                 android:id="@+id/start_date_view"
-                android:layout_width="63dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minWidth="210dp"
-                android:padding="20dp"
+                android:padding="2dp"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
             <TextView
                 android:id="@+id/end_date_view"
-                android:layout_width="63dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minWidth="210dp"
-                android:padding="20dp"
+                android:padding="2dp"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
         </LinearLayout>

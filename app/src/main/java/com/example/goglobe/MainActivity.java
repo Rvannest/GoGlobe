@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView tripsRecyclerView;
 
         tripsRecyclerView = findViewById(R.id.tripsRecyclerView);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         tripsRecyclerView.setLayoutManager(linearLayoutManager);
 
@@ -39,7 +41,18 @@ public class MainActivity extends AppCompatActivity {
         Date tempStartDate = calendar.getTime();
         calendar.set(2024, Calendar.DECEMBER, 20);
         Date tempEndDate = calendar.getTime();
+
         dataList.add(new TripsDataSet(0, "Quebec Fun", "Montreal, Quebec, Canada",
+                tempStartDate, tempEndDate, 0));
+        dataList.add(new TripsDataSet(0, "Ottawa Outing", "Ottawa, Ontario, Canada",
+                tempStartDate, tempEndDate, 0));
+        dataList.add(new TripsDataSet(0, "Tokyo Trip", "Tokyo, Japan",
+                tempStartDate, tempEndDate, 0));
+        dataList.add(new TripsDataSet(0, "Shanghai Sightseeing", "Shanghai, China",
+                tempStartDate, tempEndDate, 0));
+        dataList.add(new TripsDataSet(0, "Stockholm Searching", "Stockholm, Sweden",
+                tempStartDate, tempEndDate, 0));
+        dataList.add(new TripsDataSet(0, "Hanoi Hideaway", "Hanoi, Vietnam",
                 tempStartDate, tempEndDate, 0));
 
         TripsAdapter tripsAdapter = new TripsAdapter(dataList, MainActivity.this);

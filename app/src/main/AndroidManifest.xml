@@ -19,6 +19,11 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
+            android:name=".TripPlanningActivity"
+            android:exported="false"
+            android:label="@string/title_activity_trip_planning"
+            android:theme="@style/Theme.GoGlobe" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity

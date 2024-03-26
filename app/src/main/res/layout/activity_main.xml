@@ -4,12 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bglight"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="10dp"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="GoGlobe"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textSize="40sp"
+            android:textStyle="bold" />
 
         <!-- Horizontal LinearLayout for Login and Register buttons -->
         <LinearLayout
@@ -20,23 +33,39 @@
             <Button
                 android:id="@+id/buttonLogin"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:text="Login" />
+                android:text="Login"
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/buttonRegister"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginLeft="5dp"
                 android:layout_weight="1"
-                android:text="Register" />
+                android:text="Register"
+                android:textSize="20sp" />
         </LinearLayout>
 
         <Button
             android:id="@+id/buttonMakeTrip"
             android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
+            android:text="Create a New Trip"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create a New Trip" />
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="2dp"
+            android:text="Your Trips:"
+            android:textSize="30sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tripsRecyclerView"

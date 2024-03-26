@@ -58,6 +58,14 @@ public class MainActivity extends AppCompatActivity {
                 tempStartDate, tempEndDate, 0));
         dataList.add(new TripsDataSet(0, "Hanoi Hideaway", "Hanoi, Vietnam",
                 tempStartDate, tempEndDate, 0));
+        dataList.add(new TripsDataSet(0, "Temp Trip", "Not, Real",
+                tempStartDate, tempEndDate, 0));
+        dataList.add(new TripsDataSet(0, "Temp Trip", "Not, Real",
+                tempStartDate, tempEndDate, 0));
+        dataList.add(new TripsDataSet(0, "Temp Trip", "Not, Real",
+                tempStartDate, tempEndDate, 0));
+        dataList.add(new TripsDataSet(0, "Temp Trip", "Not, Real",
+                tempStartDate, tempEndDate, 0));
 
         TripsAdapter tripsAdapter = new TripsAdapter(dataList, MainActivity.this);
         tripsRecyclerView.setAdapter(tripsAdapter);

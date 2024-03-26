@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
         Boolean isLoggedIn; // keeps track if user is logged in or not
         ArrayList<TripsDataSet> dataList = new ArrayList<>();
+
+        Context context = MainActivity.this;
 
         Button buttonLogin = findViewById(R.id.buttonLogin);
         Button buttonRegister = findViewById(R.id.buttonRegister);
@@ -62,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start an activity to login
-
+                Intent intent = new Intent(context, LoginActivity.class);
+                context.startActivity(intent);
             }
         });
 
@@ -70,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start an activity to register
-
+                Intent intent = new Intent(context, RegisterActivity.class);
+                context.startActivity(intent);
             }
         });
 
@@ -78,7 +84,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start an activity to make a new trip
-
+                Intent intent = new Intent(context, CreateTripActivity.class);
+                context.startActivity(intent);
             }
         });
     }

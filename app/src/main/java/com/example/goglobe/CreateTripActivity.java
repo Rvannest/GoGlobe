@@ -23,6 +23,7 @@ public class CreateTripActivity extends AppCompatActivity {
     private EditText editTextTripName;
     private EditText editTextDestination;
     private Button buttonSubmitTrip;
+    private Button buttonBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,17 @@ public class CreateTripActivity extends AppCompatActivity {
         editTextTripName = findViewById(R.id.editTextTripName);
         buttonSubmitTrip = findViewById(R.id.buttonSubmitTrip);
         buttonSubmitTrip.setOnClickListener(view -> submitTrip());
+        buttonBack = findViewById(R.id.buttonBack);
+
+
+        // Back Button
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
 

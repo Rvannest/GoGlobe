@@ -8,6 +8,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
 public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String USER_TABLE = "USER_TABLE";
     public static final String COLUMN_USER_USERNAME = "USER_USERNAME";
@@ -104,4 +108,56 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
+    public String getColumnUserUsername(int userID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT " + COLUMN_USER_USERNAME + " FROM " + USER_TABLE + " WHERE " + COLUMN_ID + " = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(userID)});
+
+        String username = null;
+        if (cursor.moveToFirst()) {
+            username = cursor.getString(0);
+        }
+        cursor.close();
+        db.close();
+        return username;
+    }
+
+    public ArrayList<TripsDataSet> getUserTrips(int userID) {
+        ArrayList<TripsDataSet> trips = new ArrayList<>();
+
+        if (userID == -1) {
+            return trips;
+        }
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        String query = "SELECT * FROM " + TRIP_TABLE + " WHERE " + COLUMN_TRIP_USER_ID + " = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(userID)});
+
+        if (cursor.moveToFirst()) {
+            do {
+                TripsDataSet trip = new TripsDataSet();
+                //trip.tripID = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
+                trip.tripName = cursor.getString(cursor.getColumnIndex(COLUMN_TRIP_NAME));
+                trip.tripLocation = cursor.getString(cursor.getColumnIndex(COLUMN_TRIP_DESTINATION));
+                trip.userID = userID;
+
+                // parse the start and end dates from String to Date
+                try {
+                    String startDateStr = cursor.getString(cursor.getColumnIndex(COLUMN_TRIP_START_DATE));
+                    String endDateStr = cursor.getString(cursor.getColumnIndex(COLUMN_TRIP_END_DATE));
+                    trip.startDate = dateFormat.parse(startDateStr);
+                    trip.endDate = dateFormat.parse(endDateStr);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                trips.add(trip);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return trips;
+    }
 }

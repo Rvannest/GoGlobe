@@ -72,10 +72,6 @@ public class MainActivity extends AppCompatActivity {
         TripsAdapter tripsAdapter = new TripsAdapter(dataList, MainActivity.this);
         tripsRecyclerView.setAdapter(tripsAdapter);
 
-        // Clear SharedPreferences on start up
-        SharedPreferences sharedPreferences = getSharedPreferences("userPrefs", MODE_PRIVATE);
-        sharedPreferences.edit().clear().apply();
-
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -55,4 +55,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean validLogin(String username, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + USER_TABLE + " WHERE " + COLUMN_USER_USERNAME + " = ? AND " + COLUMN_USER_PASSWORD + " = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{username, password});
+
+        boolean isValid = cursor.moveToFirst();
+        cursor.close();
+        db.close();
+        return isValid;
+    }
+
 }

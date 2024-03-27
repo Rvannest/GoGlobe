@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.SharedPreferences;
+
 
 public class LoginActivity extends AppCompatActivity {
     private Button btnLogin, btnBack;
@@ -40,6 +42,13 @@ public class LoginActivity extends AppCompatActivity {
                 // Check if the username and password are correct
                 if (dbHelper.validLogin(username, password)) {
                     // Login successful
+                    // Added storage of current user ID in shared preferences to recall for create trip storage associated with user ID
+                    int userId = dbHelper.getUserId(username); // Implement getUserId in the DataBaseHelper
+                    SharedPreferences sharedPreferences = getSharedPreferences("userPrefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putInt("userId", userId);
+                    editor.apply();
+
                     Toast.makeText(LoginActivity.this, "Successfully Logged In", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);

@@ -10,6 +10,9 @@ public class TripsDataSet {
     public Date endDate;
     public int userID;
 
+    public TripsDataSet() {
+    }
+
     public TripsDataSet(int tripID, String tripName, String tripLocation, Date startDate, Date endDate, int userID) {
         this.tripID = tripID;
         this.tripName = tripName;

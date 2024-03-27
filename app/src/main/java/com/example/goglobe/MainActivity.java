@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import android.widget.Toast;
+import android.content.SharedPreferences;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -91,10 +93,23 @@ public class MainActivity extends AppCompatActivity {
         buttonMakeTrip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Start an activity to make a new trip
-                Intent intent = new Intent(context, CreateTripActivity.class);
-                context.startActivity(intent);
+                // Check if the user is logged in
+                int userId = getUserIdFromSession();
+                if (userId != -1) {
+                    // User is logged in, use user ID in create trip activity
+                    Intent intent = new Intent(context, CreateTripActivity.class);
+                    startActivity(intent);
+                } else {
+                    // User not logged in, do not let start activity
+                    Toast.makeText(context, "Please log in to create a trip.", Toast.LENGTH_LONG).show();
+                }
             }
         });
+    }
+
+    // Retrieve user ID from SharedPreferences for Create Trip Start
+    private int getUserIdFromSession() {
+        SharedPreferences sharedPreferences = getSharedPreferences("userPrefs", MODE_PRIVATE);
+        return sharedPreferences.getInt("userId", -1); // If ID not found
     }
 }

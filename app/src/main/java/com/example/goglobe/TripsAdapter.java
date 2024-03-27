@@ -41,11 +41,19 @@ public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.MyViewHolder
         //holder.tripLocationView.setText(data.getTripLocation());
         //holder.tripStartDateView.setText(data.getStartDate().toString());
         //holder.tripEndDateView.setText(data.getEndDate().toString());
+
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, TripDetailsActivity.class);
-                intent.putExtra("trip_id", dataList.get(position).getTripID());
+                TripsDataSet selectedTrip = dataList.get(position);
+
+                intent.putExtra("trip_id", selectedTrip.getTripID());
+                intent.putExtra("trip_name", selectedTrip.getTripName());
+                intent.putExtra("trip_location", selectedTrip.getTripLocation());
+                intent.putExtra("start_date", selectedTrip.getStartDate().getTime());
+                intent.putExtra("end_date", selectedTrip.getEndDate().getTime());
+
                 context.startActivity(intent);
             }
         });

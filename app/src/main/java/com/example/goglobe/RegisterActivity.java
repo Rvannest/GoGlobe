@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class RegisterActivity extends AppCompatActivity {
-    Button btn_register;
+    Button btn_register, btnBack;
     EditText et_username , et_password , et_password_confirm ;
 
 
@@ -21,6 +21,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         btn_register = findViewById(R.id.btn_register);
+        btnBack = findViewById(R.id.btn_back_to_main);
         et_username = findViewById(R.id.et_username);
         et_password = findViewById(R.id.et_password);
         et_password_confirm = findViewById(R.id.et_password_confirm);
@@ -65,6 +66,15 @@ public class RegisterActivity extends AppCompatActivity {
 
                     }
                 }
+            }
+        });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Go back to the MainActivity
+                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }

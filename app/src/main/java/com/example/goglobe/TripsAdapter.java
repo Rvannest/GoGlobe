@@ -38,9 +38,9 @@ public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.MyViewHolder
         TripsDataSet data = dataList.get(position);
 
         holder.tripNameView.setText(data.getTripName());
-        holder.tripLocationView.setText(data.getTripLocation());
-        holder.tripStartDateView.setText(data.getStartDate().toString());
-        holder.tripEndDateView.setText(data.getEndDate().toString());
+        //holder.tripLocationView.setText(data.getTripLocation());
+        //holder.tripStartDateView.setText(data.getStartDate().toString());
+        //holder.tripEndDateView.setText(data.getEndDate().toString());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,9 +65,9 @@ public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.MyViewHolder
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tripNameView = itemView.findViewById(R.id.trip_name_view);
-            tripLocationView = itemView.findViewById(R.id.trip_location_view);
-            tripStartDateView = itemView.findViewById(R.id.start_date_view);
-            tripEndDateView = itemView.findViewById(R.id.end_date_view);
+//            tripLocationView = itemView.findViewById(R.id.trip_location_view);
+//            tripStartDateView = itemView.findViewById(R.id.start_date_view);
+//            tripEndDateView = itemView.findViewById(R.id.end_date_view);
             cardView = itemView.findViewById(R.id.card_view);
         }
     }

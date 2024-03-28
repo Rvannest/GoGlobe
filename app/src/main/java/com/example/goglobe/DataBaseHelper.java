@@ -122,6 +122,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return username;
     }
 
+    public boolean deleteTrip(int tripId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereClause = COLUMN_TRIP_ID + "=?";
+        String[] whereArgs = new String[] { String.valueOf(tripId) };
+        int deleteCount = db.delete(TRIP_TABLE, whereClause, whereArgs);
+        db.close();
+        return deleteCount > 0;
+    }
+
     public ArrayList<TripsDataSet> getUserTrips(int userID) {
         ArrayList<TripsDataSet> trips = new ArrayList<>();
 

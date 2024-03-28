@@ -1,5 +1,6 @@
 package com.example.goglobe;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -8,7 +9,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -55,5 +60,35 @@ public class TripDetailsActivity extends AppCompatActivity {
             String durationText = getString(R.string.trip_duration, durationInDays);
             tripDuration.setText(durationText);
         }
+
+        Button deleteButton = findViewById(R.id.deleteButton);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteTrip();
+            }
+        });
+
+    }
+
+    private void deleteTrip() {
+        int tripId = getIntent().getIntExtra("trip_id", -1);
+        android.util.Log.d("DeleteTrip", "Deleting trip with ID: " + tripId); // log statement
+
+        if(tripId != -1) {
+            android.util.Log.d("DeleteTrip", "Inside if statement -1 ... Deleting trip with ID: " + tripId); // log statement
+            DataBaseHelper dbHelper = new DataBaseHelper(TripDetailsActivity.this);
+            boolean success = dbHelper.deleteTrip(tripId);
+            if (success) {
+                Toast.makeText(TripDetailsActivity.this, "Trip deleted successfully", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(TripDetailsActivity.this, "Failed to delete trip", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
     }
 }

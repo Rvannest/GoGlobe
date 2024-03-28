@@ -25,16 +25,23 @@ import java.util.concurrent.TimeUnit;
 
 public class TripDetailsActivity extends AppCompatActivity {
 
+    private TextView tripTitle;
+    private TextView tripLocation;
+    private TextView tripStartDate;
+    private TextView tripEndDate;
+    private TextView tripDuration;
+    private int tripID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_details);
 
-        TextView tripTitle = findViewById(R.id.trip_title);
-        TextView tripLocation = findViewById(R.id.trip_location);
-        TextView tripStartDate = findViewById(R.id.trip_start_date);
-        TextView tripEndDate = findViewById(R.id.trip_end_date);
-        TextView tripDuration = findViewById(R.id.trip_duration);
+        tripTitle = findViewById(R.id.trip_title);
+        tripLocation = findViewById(R.id.trip_location);
+        tripStartDate = findViewById(R.id.trip_start_date);
+        tripEndDate = findViewById(R.id.trip_end_date);
+        tripDuration = findViewById(R.id.trip_duration);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -42,6 +49,8 @@ public class TripDetailsActivity extends AppCompatActivity {
             String location = extras.getString("trip_location");
             long startDateMillis = extras.getLong("start_date");
             long endDateMillis = extras.getLong("end_date");
+            tripID = extras.getInt("trip_id");
+            android.util.Log.d("Set trip_id", "setting trip_id with ID: " + tripID); // log statement
 
             Date startDate = new Date(startDateMillis);
             Date endDate = new Date(endDateMillis);
@@ -72,13 +81,12 @@ public class TripDetailsActivity extends AppCompatActivity {
     }
 
     private void deleteTrip() {
-        int tripId = getIntent().getIntExtra("trip_id", -1);
-        android.util.Log.d("DeleteTrip", "Deleting trip with ID: " + tripId); // log statement
+        android.util.Log.d("DeleteTrip", "Deleting trip with ID: " + tripID); // log statement
 
-        if(tripId != -1) {
-            android.util.Log.d("DeleteTrip", "Inside if statement -1 ... Deleting trip with ID: " + tripId); // log statement
+        if(tripID != -1) {
+            android.util.Log.d("DeleteTrip", "Inside if statement NOT -1 ... Deleting trip with ID: " + tripID); // log statement
             DataBaseHelper dbHelper = new DataBaseHelper(TripDetailsActivity.this);
-            boolean success = dbHelper.deleteTrip(tripId);
+            boolean success = dbHelper.deleteTrip(tripID);
             if (success) {
                 Toast.makeText(TripDetailsActivity.this, "Trip deleted successfully", Toast.LENGTH_SHORT).show();
             } else {

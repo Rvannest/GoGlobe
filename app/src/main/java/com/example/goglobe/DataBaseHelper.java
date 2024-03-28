@@ -147,7 +147,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 TripsDataSet trip = new TripsDataSet();
-                //trip.tripID = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
+                trip.tripID = cursor.getInt(cursor.getColumnIndex(COLUMN_TRIP_ID));
                 trip.tripName = cursor.getString(cursor.getColumnIndex(COLUMN_TRIP_NAME));
                 trip.tripLocation = cursor.getString(cursor.getColumnIndex(COLUMN_TRIP_DESTINATION));
                 trip.userID = userID;
